@@ -273,8 +273,10 @@
             visibility: visible;
         }
         
+        /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 600px;
             background: url('./images/home.png') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -282,7 +284,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background-size: 110% auto;
         }
         
         .hero:before {
@@ -292,7 +293,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
         }
         
         .hero-content {
@@ -300,6 +301,7 @@
             z-index: 1;
             max-width: 800px;
             padding: 0 20px;
+            width: 100%;
         }
         
         .hero-title {
@@ -329,6 +331,7 @@
             flex-wrap: wrap;
         }
         
+        /* Fire Particles */
         .fire-particle {
             position: absolute;
             background-color: #ff6b00;
@@ -350,15 +353,31 @@
             }
         }
         
-        .features {
-            padding: 100px 0;
-            background: url('./images/features.png') no-repeat center center/cover;
+        /* Sections Common Styling */
+        .section {
+            padding: 80px 0;
             position: relative;
         }
         
-        .features .container {
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .section-content {
             position: relative;
             z-index: 1;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--darker);
         }
         
         .features-grid {
@@ -370,7 +389,7 @@
         
         .feature-card {
             background-color: rgba(24, 21, 18, 0.9);
-            border-radius: 5px;
+            border-radius: 8px;
             padding: 30px;
             text-align: center;
             transition: all 0.3s ease;
@@ -395,15 +414,12 @@
             text-transform: uppercase;
         }
         
+        /* Team Finder Section */
         .team-finder {
-            padding: 100px 0;
-            background: url('./images/findsquad.png') no-repeat center center/cover;
-            position: relative;
+            background-color: var(--dark);
         }
         
         .team-finder-content {
-            position: relative;
-            z-index: 1;
             text-align: center;
         }
         
@@ -417,7 +433,7 @@
         .step {
             background-color: rgba(24, 21, 18, 0.9);
             padding: 30px;
-            border-radius: 5px;
+            border-radius: 8px;
             border: 1px solid var(--primary);
         }
         
@@ -439,15 +455,9 @@
             text-transform: uppercase;
         }
         
+        /* Rules Section */
         .rules {
-            padding: 100px 0;
-            background: url('./images/rules.png') no-repeat center center/cover;
-            position: relative;
-        }
-        
-        .rules .container {
-            position: relative;
-            z-index: 1;
+            background-color: var(--darker);
         }
         
         .rules-container {
@@ -458,9 +468,9 @@
         
         .rule-card {
             background-color: rgba(15, 14, 12, 0.9);
-            padding: 30px;
+            padding: 25px;
             border-left: 4px solid var(--primary);
-            border-radius: 0 5px 5px 0;
+            border-radius: 0 8px 8px 0;
         }
         
         .rule-number {
@@ -477,15 +487,9 @@
             text-transform: uppercase;
         }
         
+        /* Discord Section */
         .discord-cta {
-            padding: 100px 0;
-            background: url('./images/discord.png') no-repeat center center/cover;
-            position: relative;
-        }
-        
-        .discord-cta .container {
-            position: relative;
-            z-index: 1;
+            background-color: var(--dark);
         }
         
         .discord-widget {
@@ -498,14 +502,24 @@
             border: 1px solid #5865F2;
         }
         
-        @media (max-width: 992px) {
-            nav ul li a {
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-        }
-        
+        /* ==================== */
+        /* MOBILE SPECIFIC STYLES */
+        /* ==================== */
         @media (max-width: 768px) {
+            /* Base Mobile Styles */
+            body {
+                padding-top: 70px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            /* Mobile Navigation (keeping as is per request) */
             .mobile-menu-btn {
                 display: block;
             }
@@ -514,44 +528,121 @@
                 display: none;
             }
             
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .hero-title {
-                font-size: 48px;
-            }
-            
-            .hero-subtitle {
-                font-size: 20px;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            
+            /* Hero Section */
             .hero {
-                background-size: cover;
-                background-position: center;
+                min-height: 500px;
+                background-position: 65% center;
             }
-        }
-        
-        @media (max-width: 576px) {
-            .section-title {
-                font-size: 24px;
+            
+            .hero-content {
+                padding: 0 15px;
             }
             
             .hero-title {
-                font-size: 36px;
+                font-size: 42px;
+                margin-bottom: 15px;
+                line-height: 1.2;
             }
             
             .hero-subtitle {
                 font-size: 18px;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 13px;
+            }
+            
+            /* Section Titles */
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 25px;
+                text-align: center;
+            }
+            
+            /* Features Grid */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 30px;
+            }
+            
+            .feature-card {
+                padding: 25px 20px;
+            }
+            
+            .feature-icon {
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+            
+            .feature-title {
+                font-size: 18px;
+            }
+            
+            /* Team Finder Steps */
+            .team-finder-steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            
+            .step {
+                padding: 20px;
+            }
+            
+            /* Rules Container */
+            .rules-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .rule-card {
+                padding: 20px;
+            }
+            
+            /* Discord Widget */
+            .discord-widget {
+                margin: 30px auto 0;
+            }
+            
+            /* Text Content Adjustments */
+            p {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 36px;
             }
             
             .mobile-menu {
                 width: 280px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
             }
         }
     </style>
@@ -601,54 +692,51 @@
         </div>
     </section>
 
-<section id="features" class="features">
-    <div class="container">
-        <h2 class="section-title">Community <span>Features</span></h2>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-users"></i></div>
-                <h3 class="feature-title">Find Teammates</h3>
-                <p>Sick of solo-queuing like a sad little virgin? Link up with squadmates who actually know how to play instead of feeding like a dumbass.</p>
-            </div>
+    <section id="features" class="section features">
+        <div class="container">
+            <h2 class="section-title">Community <span>Features</span></h2>
             
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-microphone"></i></div>
-                <h3 class="feature-title">Voice Channels</h3>
-                <p>Got trash aim but a sexy voice? Join our voice chats to bitch, flex, or just fuck around while we wreck Timmies.</p>
-            </div>
-            
-<div class="feature-card">
-    <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-    <h3 class="feature-title">Community Events</h3>
-    <p>Mostly giveaways, but not that basic-ass crap — we’re talking free guns, sick gear, and stuff to make you look like a total beast. Come through and flex or just lurk and hope you get lucky, pussy.</p>
-</div>
-
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
-                <h3 class="feature-title">Strategy Sharing</h3>
-                <p>Learn the sneaky-ass tricks from pros or flex your own dumb luck. Sharing is caring, unless you’re a selfish prick.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3 class="feature-title">Trusted Players</h3>
-                <p>Only roll with the real MVPs — verified legends who won’t stab you in the back or teamkill you for shits and giggles.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-handshake"></i></div>
-                <h3 class="feature-title">New Friends</h3>
-                <p>Make some homies who don’t ghost after one game and maybe even find someone to smash—online or IRL. No promises tho.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="feature-title">Find Teammates</h3>
+                    <p>Sick of solo-queuing like a sad little virgin? Link up with squadmates who actually know how to play instead of feeding like a dumbass.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-microphone"></i></div>
+                    <h3 class="feature-title">Voice Channels</h3>
+                    <p>Got trash aim but a sexy voice? Join our voice chats to bitch, flex, or just fuck around while we wreck Timmies.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                    <h3 class="feature-title">Community Events</h3>
+                    <p>Mostly giveaways, but not that basic-ass crap — we're talking free guns, sick gear, and stuff to make you look like a total beast.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="feature-title">Strategy Sharing</h3>
+                    <p>Learn the sneaky-ass tricks from pros or flex your own dumb luck. Sharing is caring, unless you're a selfish prick.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="feature-title">Trusted Players</h3>
+                    <p>Only roll with the real MVPs — verified legends who won't stab you in the back or teamkill you for shits and giggles.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="feature-title">New Friends</h3>
+                    <p>Make some homies who don't ghost after one game and maybe even find someone to smash—online or IRL. No promises tho.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
-    <!-- Team Finder Section -->
-    <section id="team-finder" class="team-finder">
+    <section id="team-finder" class="section team-finder">
         <div class="container team-finder-content">
             <h2 class="section-title">Find Your <span>Squad</span></h2>
             <p>Our community makes it easy to find teammates for your next raid. Here's how it works:</p>
@@ -682,60 +770,59 @@
             <a href="#discord" class="btn discord-btn"><i class="fab fa-discord"></i> Join Now & Find Teammates</a>
         </div>
     </section>
-<section id="rules" class="rules">
-    <div class="container">
-        <h2 class="section-title">Community <span>Rules</span></h2>
-        <p>Wanna keep this shit chill? Follow these or get the hell out:</p>
-        
-        <div class="rules-container">
-            <div class="rule-card">
-                <div class="rule-number">01</div>
-                <h3 class="rule-title">Respect Everyone</h3>
-                <p>No being a dumbass racist, sexist, homophobic piece of shit. Treat people like you want your dick respected, got it?</p>
-            </div>
+
+    <section id="rules" class="section rules">
+        <div class="container">
+            <h2 class="section-title">Community <span>Rules</span></h2>
+            <p>Wanna keep this shit chill? Follow these or get the hell out:</p>
             
-            <div class="rule-card">
-                <div class="rule-number">02</div>
-                <h3 class="rule-title">No Toxicity</h3>
-                <p>Quit being a salty little bitch throwing shade 24/7. Keep the vibe friendly.</p>
-            </div>
-            
-            <div class="rule-card">
-                <div class="rule-number">03</div>
-                <h3 class="rule-title">No Cheating</h3>
-                <p>Talking about hacks or cheating? Nah, fam. That’s some pussy-ass shit. Get good or get gone.</p>
-            </div>
-            
-            <div class="rule-card">
-                <div class="rule-number">04</div>
-                <h3 class="rule-title">Keep it Clean</h3>
-                <p>No posting porn, wild-ass curse words, or ugly-ass usernames. We’re not here to get banned for your horny fantasies.</p>
-            </div>
-            
-            <div class="rule-card">
-                <div class="rule-number">05</div>
-                <h3 class="rule-title">No Spamming</h3>
-                <p>Stop flooding the chat like a desperate thirsty hoe. No caps lock screaming or pinging like your dick’s on fire.</p>
-            </div>
-            
-            <div class="rule-card">
-                <div class="rule-number">06</div>
-                <h3 class="rule-title">Follow Discord TOS</h3>
-                <p>If you break Discord’s rules, you’re basically asking to get fucked by a banhammer. Play nice or get fucked.</p>
-            </div>
-            
-            <div class="rule-card">
-                <div class="rule-number">07</div>
-                <h3 class="rule-title">NO Team Killing</h3>
-                <p>If you’re dumb enough to kill your own damn team, you’re getting banned faster than your mom catches you jerking off. Keep your finger off the trigger unless you wanna get kicked the f*** out.</p>
+            <div class="rules-container">
+                <div class="rule-card">
+                    <div class="rule-number">01</div>
+                    <h3 class="rule-title">Respect Everyone</h3>
+                    <p>No being a dumbass racist, sexist, homophobic piece of shit. Treat people like you want your dick respected, got it?</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">02</div>
+                    <h3 class="rule-title">No Toxicity</h3>
+                    <p>Quit being a salty little bitch throwing shade 24/7. Keep the vibe friendly.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">03</div>
+                    <h3 class="rule-title">No Cheating</h3>
+                    <p>Talking about hacks or cheating? Nah, fam. That's some pussy-ass shit. Get good or get gone.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">04</div>
+                    <h3 class="rule-title">Keep it Clean</h3>
+                    <p>No posting porn, wild-ass curse words, or ugly-ass usernames. We're not here to get banned for your horny fantasies.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">05</div>
+                    <h3 class="rule-title">No Spamming</h3>
+                    <p>Stop flooding the chat like a desperate thirsty hoe. No caps lock screaming or pinging like your dick's on fire.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">06</div>
+                    <h3 class="rule-title">Follow Discord TOS</h3>
+                    <p>If you break Discord's rules, you're basically asking to get fucked by a banhammer. Play nice or get fucked.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">07</div>
+                    <h3 class="rule-title">NO Team Killing</h3>
+                    <p>If you're dumb enough to kill your own damn team, you're getting banned faster than your mom catches you jerking off.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
-    <!-- Discord Section -->
-    <section id="discord" class="discord-cta">
+    <section id="discord" class="section discord-cta">
         <div class="container">
             <h2 class="section-title">Join Our <span>Discord</span></h2>
             <p>All community activities happen on our Discord server. Join other Tabor players!</p>
@@ -751,7 +838,6 @@
     </section>
     
     <script>
-
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
