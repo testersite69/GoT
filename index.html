@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabor Raiders - Ghosts of Tabor Community</title>
+    <link rel="icon" href="https://ghostsoftabor.com/wp-content/uploads/2022/08/favicon-32x32-1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #930;
+            --secondary: #948a67;
+            --dark: #181512;
+            --darker: #0f0e0c;
+            --light: #ffffff;
+            --accent: #26241b;
+            --nav-height: 80px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #000;
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: var(--nav-height);
+        }
+        
+        a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #a04040;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .discord-btn {
+            background-color: #5865F2;
+        }
+        
+        .discord-btn:hover {
+            background-color: #4752C4;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .section-title span {
+            color: var(--secondary);
+        }
+        
+        header {
+            background-color: rgba(24, 21, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 138, 103, 0.1);
+            transition: all 0.3s ease;
+            height: var(--nav-height);
+        }
+        
+        header.scrolled {
+            background-color: rgba(15, 14, 12, 0.98);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            height: 70px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled .logo img {
+            height: 35px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            position: relative;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        nav ul li a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover:before,
+        nav ul li a.active:before {
+            width: 100%;
+        }
+        
+        nav ul li a i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--darker);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            padding: 80px 20px 20px;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            width: 100%;
+        }
+        
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-menu ul li a {
+            display: block;
+            padding: 12px 15px;
+            background-color: rgba(148, 138, 103, 0.1);
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .mobile-menu ul li a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: url('./images/home.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-size: 110% auto;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(148, 138, 103, 0.5);
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+        }
+        
+        .hero-subtitle {
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .fire-particle {
+            position: absolute;
+            background-color: #ff6b00;
+            border-radius: 50%;
+            filter: blur(5px);
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translate(10px, -20px) scale(1.1);
+                opacity: 0.4;
+            }
+        }
+        
+        .features {
+            padding: 100px 0;
+            background: url('./images/features.png') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .features .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: rgba(24, 21, 18, 0.9);
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--secondary);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .team-finder {
+            padding: 100px 0;
+            background: url('./images/findsquad.png') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .team-finder-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .team-finder-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .step {
+            background-color: rgba(24, 21, 18, 0.9);
+            padding: 30px;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            font-weight: 700;
+            line-height: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .rules {
+            padding: 100px 0;
+            background: url('./images/rules.png') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .rules .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rules-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .rule-card {
+            background-color: rgba(15, 14, 12, 0.9);
+            padding: 30px;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .rule-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .rule-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .discord-cta {
+            padding: 100px 0;
+            background: url('./images/discord.png') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .discord-cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .discord-widget {
+            max-width: 800px;
+            margin: 40px auto 0;
+            background-color: rgba(24, 21, 18, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #5865F2;
+        }
+        
+        @media (max-width: 992px) {
+            nav ul li a {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav.desktop-nav {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero {
+                background-size: cover;
+                background-position: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .mobile-menu {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#">
+                    <img src="https://ghostsoftabor.com/wp-content/uploads/2022/08/logo-ghostsoftabor.png" alt="Tabor Raiders">
+                </a>
+            </div>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                    <li><a href="#team-finder"><i class="fas fa-users"></i> Find Squad</a></li>
+                    <li><a href="#rules"><i class="fas fa-gavel"></i> Rules</a></li>
+                    <li><a href="#discord"><i class="fab fa-discord"></i> Discord</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            
+            <div class="mobile-menu-overlay"></div>
+            <div class="mobile-menu">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                    <li><a href="#team-finder"><i class="fas fa-users"></i> Find Squad</a></li>
+                    <li><a href="#rules"><i class="fas fa-gavel"></i> Rules</a></li>
+                    <li><a href="#discord"><i class="fab fa-discord"></i> Discord</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">TABOR RAIDERS</h1>
+            <p class="hero-subtitle">THE PREMIER GHOSTS OF TABOR COMMUNITY</p>
+            <div class="btn-group">
+                <a href="#discord" class="btn discord-btn"><i class="fab fa-discord"></i> Join Our Discord</a>
+                <a href="#team-finder" class="btn"><i class="fas fa-users"></i> Find Teammates</a>
+            </div>
+        </div>
+    </section>
+
+<section id="features" class="features">
+    <div class="container">
+        <h2 class="section-title">Community <span>Features</span></h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3 class="feature-title">Find Teammates</h3>
+                <p>Sick of solo-queuing like a sad little virgin? Link up with squadmates who actually know how to play instead of feeding like a dumbass.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-microphone"></i></div>
+                <h3 class="feature-title">Voice Channels</h3>
+                <p>Got trash aim but a sexy voice? Join our voice chats to bitch, flex, or just fuck around while we wreck Timmies.</p>
+            </div>
+            
+<div class="feature-card">
+    <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+    <h3 class="feature-title">Community Events</h3>
+    <p>Mostly giveaways, but not that basic-ass crap — we’re talking free guns, sick gear, and stuff to make you look like a total beast. Come through and flex or just lurk and hope you get lucky, pussy.</p>
+</div>
+
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3 class="feature-title">Strategy Sharing</h3>
+                <p>Learn the sneaky-ass tricks from pros or flex your own dumb luck. Sharing is caring, unless you’re a selfish prick.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="feature-title">Trusted Players</h3>
+                <p>Only roll with the real MVPs — verified legends who won’t stab you in the back or teamkill you for shits and giggles.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                <h3 class="feature-title">New Friends</h3>
+                <p>Make some homies who don’t ghost after one game and maybe even find someone to smash—online or IRL. No promises tho.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Team Finder Section -->
+    <section id="team-finder" class="team-finder">
+        <div class="container team-finder-content">
+            <h2 class="section-title">Find Your <span>Squad</span></h2>
+            <p>Our community makes it easy to find teammates for your next raid. Here's how it works:</p>
+            
+            <div class="team-finder-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Join Discord</h3>
+                    <p>Join our Discord server using the link below. It's completely free!</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Get Verified</h3>
+                    <p>Complete our quick verification process to access all channels.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Find Teammates</h3>
+                    <p>Use our LFG channels to find players with similar playstyles.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Raid Together</h3>
+                    <p>Team up and dominate the island of Tabor together!</p>
+                </div>
+            </div>
+            
+            <a href="#discord" class="btn discord-btn"><i class="fab fa-discord"></i> Join Now & Find Teammates</a>
+        </div>
+    </section>
+<section id="rules" class="rules">
+    <div class="container">
+        <h2 class="section-title">Community <span>Rules</span></h2>
+        <p>Wanna keep this shit chill? Follow these or get the hell out:</p>
+        
+        <div class="rules-container">
+            <div class="rule-card">
+                <div class="rule-number">01</div>
+                <h3 class="rule-title">Respect Everyone</h3>
+                <p>No being a dumbass racist, sexist, homophobic piece of shit. Treat people like you want your dick respected, got it?</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">02</div>
+                <h3 class="rule-title">No Toxicity</h3>
+                <p>Quit being a salty little bitch throwing shade 24/7. Keep the vibe friendly.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">03</div>
+                <h3 class="rule-title">No Cheating</h3>
+                <p>Talking about hacks or cheating? Nah, fam. That’s some pussy-ass shit. Get good or get gone.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">04</div>
+                <h3 class="rule-title">Keep it Clean</h3>
+                <p>No posting porn, wild-ass curse words, or ugly-ass usernames. We’re not here to get banned for your horny fantasies.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">05</div>
+                <h3 class="rule-title">No Spamming</h3>
+                <p>Stop flooding the chat like a desperate thirsty hoe. No caps lock screaming or pinging like your dick’s on fire.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">06</div>
+                <h3 class="rule-title">Follow Discord TOS</h3>
+                <p>If you break Discord’s rules, you’re basically asking to get fucked by a banhammer. Play nice or get fucked.</p>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">07</div>
+                <h3 class="rule-title">NO Team Killing</h3>
+                <p>If you’re dumb enough to kill your own damn team, you’re getting banned faster than your mom catches you jerking off. Keep your finger off the trigger unless you wanna get kicked the f*** out.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Discord Section -->
+    <section id="discord" class="discord-cta">
+        <div class="container">
+            <h2 class="section-title">Join Our <span>Discord</span></h2>
+            <p>All community activities happen on our Discord server. Join other Tabor players!</p>
+            
+            <div class="discord-widget">
+                <div style="background-color: rgba(54, 57, 63, 0.9); padding: 30px; text-align: center;">
+                    <h3 style="color: white; margin-bottom: 20px;">TABOR RAIDERS DISCORD</h3>
+                    <a href="#" class="btn discord-btn" style="margin-bottom: 20px;"><i class="fab fa-discord"></i> Join Now</a>
+                    <p style="color: #b9bbbe;">Already 30+ players waiting to team up!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+        
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        function createFireParticles() {
+            const hero = document.querySelector('.hero');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('fire-particle');
+                
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                particle.style.animationDuration = `${Math.random() * 3 + 3}s`;
+                
+                hero.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createFireParticles();
+            
+            if (window.scrollY > 50) {
+                document.querySelector('header').classList.add('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
